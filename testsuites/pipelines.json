@@ -127,5 +127,12 @@
     {
         "pipeline": "playbin audio-filter=scaletempo video-sink=fakesink uri=file://%(medias)s/defaults/mp4/mp3_h264.0.mp4",
         "scenarios": ["fast_forward"]
+    },
+    "compositor_over_alpha":
+    {
+        "pipeline": "videotestsrc pattern=blue num-buffers=1 ! compositor name=compositor sink_0::operator=source ! video/x-raw,format=AYUV ! compositor ! fakesink name=sink",
+        "config": [
+           "validatessim, element-name=\"^sink:sink$\", reference-images-dir=\"%(medias)s/ssim_expected_results/videotestsrc_blue/\""
+        ]
     }
 }
