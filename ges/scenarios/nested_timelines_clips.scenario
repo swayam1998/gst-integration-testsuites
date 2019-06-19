@@ -1,0 +1,14 @@
+description, handles-states=true, needs_preroll=true
+
+add-clip, name=timeline1, asset-id=file://nothing/test_basic.audio_video.mp3_h264_mp4.xges, layer-priority=0, type=GESUriClip, inpoint=0 duration=1
+
+add-clip, name=timeline2, asset-id=file://nothing/test_effect.audio_video.vorbis_vp8_webm.xges, layer-priority=1,type=GESUriClip
+
+add-clip, name=clip1, asset-id=file://nothing/timed_frames_video_only_1fps.mkv, layer-priority=1, type=GESUriClip, name=(string)theclip, inpoint=5, duration=3
+
+#split-clip, clip-name=clip1, position=2
+remove-clip, playback-time=2, name=timeline2
+
+commit;
+play;
+stop;
