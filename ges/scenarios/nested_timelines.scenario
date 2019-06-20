@@ -1,0 +1,24 @@
+description, handles-states=true, needs_preroll=true
+
+# adds the nested timeline to the timeline
+add-clip, name=timeline1, asset-id=file://nothing/test_basic.audio_video.mp3_h264_mp4.xges, layer-priority=0, type=GESUriClip, inpoint=0, duration=1.5
+commit;
+
+#copies the element to layer below,places at postion 0 and adds and effect
+copy-element, element-name=timeline1, position=30, paste-name=timeline2
+edit-container, container-name=timeline2, position=0, new-layer-priority=1;
+
+container-add-child, container-name=timeline2, asset-id=videoflip, child-type=GESEffect
+set-child-property, element-name=effect0, property=method, value=2;
+
+#trim timeline2 to 1 sec
+edit-container, container-name=timeline2, edit-mode=edit_trim, position=1.0, new-layer-priority=(int)-1, edge=(string)edge_end;
+
+#play and pause after 1.2 sec
+play
+pause, playback-time=1.2;
+
+#remove timeline2 and remove layer 0
+remove-clip, name=timeline2;
+
+stop;
