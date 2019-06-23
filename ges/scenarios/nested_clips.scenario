@@ -3,11 +3,11 @@ description, seek=true, handles-states=true, needs_preroll=true
 include, location="../../medias/defaults/matroska/timed_frames_video_only_1fps.mkv.frames_checksums.scenario"
 
 # add timeline1 to timeline
-add-clip, name=timeline1, asset-id=file://nothing/nest1.xges, layer-priority=0, type=GESUriClip, inpoint=0, duration=1.5
+add-clip, name=timeline1, asset-id=file://nothing/timed_frames_video_only_1fps.mkv.nested_timeline.xges, layer-priority=0, type=GESUriClip, inpoint=0, duration=1.5
 commit;
 
 # add timeline2 to timeline
-add-clip, name=timeline2, asset-id=file://nothing/nest1.xges, layer-priority=1, type=GESUriClip, inpoint=0, duration=1.2, start=1.5
+add-clip, name=timeline2, asset-id=file://nothing/timed_frames_video_only_1fps.mkv.nested_timeline.xges, layer-priority=1, type=GESUriClip, inpoint=0, duration=1.2, start=1.5
 commit;
 
 play;
