@@ -9,14 +9,12 @@ add-clip, name=clip, asset-id=file://nothing/timed_frames_video_only_1fps.mkv, l
 serialize-project, uri="$(nested_timeline_uri)"
 remove-clip, name=clip
 
-add-clip, name=nested-clip1, asset-id="$(nested_timeline_uri)", layer-priority=0, type=GESUriClip, inpoint=0, duration=2.0
+add-clip, name=nested-clip1, asset-id="$(nested_timeline_uri)", layer-priority=0, type=GESUriClip, inpoint=0.0, duration=2.0
 
-add-clip, name=nested-clip2, asset-id="$(nested_timeline_uri)", layer-priority=0, type=GESUriClip, inpoint=0, duration=2.0, start=2.0
+add-clip, name=nested-clip2, asset-id="$(nested_timeline_uri)", layer-priority=0, type=GESUriClip, inpoint=0.0, duration=2.0, start=2.0
 
 commit;
-
-play
-pause, playback-time=2.2;
+pause;
 
 # seek to 2.2 sec and check frame
 seek, flags=accurate+flush, start=2.2
@@ -31,10 +29,6 @@ set-child-property, element-name=effect0, property=method, value=2;
 
 # trim nested-clip2 to 1 sec
 edit-container, container-name=nested-clip2, edit-mode=edit_trim, position=1, new-layer-priority=(int)-1, edge=(string)edge_end;
-
-# play and pause after 2 sec
-play
-pause, playback-time=1.2;
 
 # seek to 1.2 sec and check frame
 seek, flags=accurate+flush, start=1.2
