@@ -146,5 +146,26 @@
               ]
           }
         ]
+    },
+    "uridecodebin_nested_timeline":
+    {
+        "extra_env_vars":
+        {
+            "GES_MISSING_URI_ASSETS_PATH": "%(medias)s/defaults/mp4/"
+        },
+        "pipeline": "uridecodebin uri='file://%(config_path)s/../medias/defaults/xges/nested_timeline.mp3_h264.0.xges' name=decode ! videoconvert ! videorate ! videoscale method=lanczos ! capsfilter caps=video/x-raw,format=RGBA,height=59,pixel-aspect-ratio=1/1,framerate=2/1 ! fakesink",
+        "scenarios":[
+            {
+                "name": "seek",
+                "actions":[
+                    "description, seek=true, handles_states=true",
+                    "pause, playback-time=1.0, duration=1.0",
+                    "seek, playback-time=3.0, start=3.0, flags=accurate+flush",
+                    "play, duration=3.0",
+                    "pause",
+                    "stop"
+                ]
+            }
+        ]
     }
 }
